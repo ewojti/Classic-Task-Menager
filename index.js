@@ -1,6 +1,6 @@
 const form = document.getElementById("form-task");
 const taskList = document.getElementById("task-list");
-const deleteButton = document.querySelectorAll("delete_btn");
+const deleteButton = document.getElementsByClassName("delete_btn");
 const clearButton = document.getElementById("clear_btn");
 let taskArray = JSON.parse(localStorage.getItem("taskArrayStorage")) || [];
 
@@ -24,29 +24,29 @@ function displayTaskItem() {
 
 displayTaskItem();
 
-if (deleteButton) {
-  Array.from(deleteButton).forEach((button) => {
-    button.addEventListener("click", (event) => {
-      const index = parseInt(event.target.getAttribute("data-index"));
-      // Usunięcie zadania z tablicy taskArray
-      console.log(index);
-      taskArray.splice(index, 1);
-      // Zaktualizowanie localStorage
-      localStorage.setItem("taskArrayStorage", JSON.stringify(taskArray));
-      // Ponowne wyświetlenie listy zadań
-      displayTaskItem();
-    });
-  });
-}
-
-// deleteButtons.forEach((button) => {
-//   button.addEventListener("click", (event) => {
-//     const index = parseInt(event.target.getAttribute("data-index"));
-//     taskArray.splice(index, 1);
-//     localStorage.setItem("taskArrayStorage", JSON.stringify(taskArray));
-//     displayTaskItem();
+// if (deleteButton) {
+//   Array.from(deleteButton).forEach((button) => {
+//     button.addEventListener("click", (event) => {
+//       const index = parseInt(event.target.getAttribute("data-index"));
+//       // Usunięcie zadania z tablicy taskArray
+//       console.log(index);
+//       taskArray.splice(index, 1);
+//       // Zaktualizowanie localStorage
+//       localStorage.setItem("taskArrayStorage", JSON.stringify(taskArray));
+//       // Ponowne wyświetlenie listy zadań
+//       displayTaskItem();
+//     });
 //   });
-// });
+// }
+
+taskList.addEventListener("click", (event) => {
+  if (event.target.classList.contains("delete_btn")) {
+    const index = parseInt(event.target.getAttribute("data-index"));
+    taskArray.splice(index, 1);
+    localStorage.setItem("taskArrayStorage", JSON.stringify(taskArray));
+    displayTaskItem();
+  }
+});
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
