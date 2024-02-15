@@ -10,36 +10,25 @@ function displayTaskItem() {
       (item, index) => `
       <div class='list-task_item'>
         <div class='list-task_item_content'>
-            <h2>${item.name}</h2>
+            <span>${index}</span>
+            <h3>${item.name}</h3>
             <p>${item.task}</p>
+            <p>${item.date}</p>
+
         </div>
         <div class='list-task_item_delete'>
             <button class='delete_btn' data-index=${index}>X</button>
         </div>
       </div>
-            `
+      `
     )
     .join(""));
 }
 
 displayTaskItem();
 
-// if (deleteButton) {
-//   Array.from(deleteButton).forEach((button) => {
-//     button.addEventListener("click", (event) => {
-//       const index = parseInt(event.target.getAttribute("data-index"));
-//       // Usunięcie zadania z tablicy taskArray
-//       console.log(index);
-//       taskArray.splice(index, 1);
-//       // Zaktualizowanie localStorage
-//       localStorage.setItem("taskArrayStorage", JSON.stringify(taskArray));
-//       // Ponowne wyświetlenie listy zadań
-//       displayTaskItem();
-//     });
-//   });
-// }
-
 taskList.addEventListener("click", (event) => {
+  console.log(event);
   if (event.target.classList.contains("delete_btn")) {
     const index = parseInt(event.target.getAttribute("data-index"));
     taskArray.splice(index, 1);
@@ -52,10 +41,12 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   let name = document.getElementById("name").value;
   let task = document.getElementById("task").value;
+  let deadlineDate = document.getElementById("deadline-time").value;
   //dodajemy do tablicy dane z formularza w postaci obiektu
   taskArray.push({
     name: name,
     task: task,
+    date: deadlineDate,
   });
   //resetujemy formularz po jego wypełnieniu
   form.reset();
@@ -65,6 +56,6 @@ form.addEventListener("submit", (e) => {
 
 clearButton.addEventListener("click", () => {
   localStorage.clear();
-  taskArray = []
+  taskArray = [];
   displayTaskItem();
 });

@@ -1,6 +1,7 @@
 body {
     background-color: #111;
     color: #FFFFFD;
+    padding: 1rem;
 }
 
 h1 {
@@ -8,6 +9,10 @@ h1 {
     font-weight: 3rem;
     color: orange;
     text-align: center;
+}
+
+h2 {
+    
 }
 
 form {
