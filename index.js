@@ -1,5 +1,5 @@
 const form = document.getElementById("form-task");
-const taskList = document.getElementById("task-list");
+const taskList = document.getElementById("task-todo");
 const deleteButton = document.getElementsByClassName("delete_btn");
 const clearButton = document.getElementById("clear_btn");
 let taskArray = JSON.parse(localStorage.getItem("taskArrayStorage")) || [];
@@ -8,7 +8,7 @@ function displayTaskItem() {
   return (taskList.innerHTML = taskArray
     .map(
       (item, index) => `
-      <div class='list-task_item'>
+      <div class='task-item-content'>
         <div class='list-task_item_content'>
             <span>${index}</span>
             <h3>${item.name}</h3>
@@ -42,13 +42,13 @@ form.addEventListener("submit", (e) => {
   let name = document.getElementById("name").value;
   let task = document.getElementById("task").value;
   let deadlineDate = document.getElementById("deadline-time").value;
-  //dodajemy do tablicy dane z formularza w postaci obiektu
+  //add task to the array 
   taskArray.push({
     name: name,
     task: task,
     date: deadlineDate,
   });
-  //resetujemy formularz po jego wypełnieniu
+  //reset form after completing
   form.reset();
   localStorage.setItem("taskArrayStorage", JSON.stringify(taskArray));
   displayTaskItem();
