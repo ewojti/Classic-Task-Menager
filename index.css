@@ -67,11 +67,16 @@ button {
     border-radius: 0.5rem;
 }
 
+.task-item > h2 {
+    text-align: center;
+}
+
 .task-item-list{
     display: flex;
     flex-direction: column;
     gap: 1rem;
     align-items: center;
+    overflow-y: visible;
 }
 
 .task-item-content {
@@ -85,4 +90,12 @@ button {
     justify-content: space-between;
     border-radius: 0.5rem;
     cursor: pointer;
+}
+
+.delete-btn{
+    border: none;
+    border-radius: 0.4rem;
+    background-color: none;
+    width: 30px;
+    height: 30px;
 }
